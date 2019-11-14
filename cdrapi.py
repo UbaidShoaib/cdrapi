@@ -20,7 +20,7 @@ list =data['cdr_root']
 call_history=[]
 for item in list:
     call_dict = {}
-    if len(item) > 4:
+    if len(item) == 33:
 
         call_dict['cdr'] = item['cdr']
         call_dict['dst'] = item['dst']
@@ -37,23 +37,10 @@ for item in list:
         print("--------------------------")
     else:
         for key, value in item.items():
-            if (key != 'cdr'):
-                if value['answer'] is None:
-                    print('NUll Value')
-                    print("--------------------------")
-                    call_dict['cdr'] = value['cdr']
-                    call_dict['dst'] = value['dst']
-                    call_dict['lastdata'] = value['lastdata']
-                    call_dict['duration'] = value['duration']
-                    call_dict['disposition'] = value['disposition']
-                    call_dict['answer'] = value['answerecordfiles']
-                    call_dict['end'] = value['end']
-                    # with open('test.csv', 'w') as f:
-                    #     for key in call_dict.keys():
-                    #         f.write("%s,%s\n" % (key, call_dict[key]))
-                    call_history.append(call_dict)
+            if(key=='cdr'):
+                call_dict['cdr'] = item['cdr']
 
-                else:
+            if (key != 'cdr'):
 
                     call_dict['dst'] = value['dst']
                     call_dict['lastdata'] = value['lastdata']
@@ -61,7 +48,7 @@ for item in list:
                     call_dict['disposition'] = value['disposition']
                     call_dict['answer'] = value['answer']
                     call_dict['recordfiles'] = value['recordfiles']
-                    # call_dict['end'] = value['end']
+                    call_dict['end'] = value['end']
                     # with open('test.csv', 'w') as f:
                     #     for key in call_dict.keys():
                     #         f.write("%s,%s\n" % (key, call_dict[key]))
@@ -69,6 +56,26 @@ for item in list:
 
                     print("--------------------------")
 print(call_history)
+print(len(call_history))
+
+# if value['answer'] is None:
+# print('NUll Value')
+# print("--------------------------")
+# call_dict['cdr'] = value['cdr']
+# call_dict['dst'] = value['dst']
+# call_dict['lastdata'] = value['lastdata']
+# call_dict['duration'] = value['duration']
+# call_dict['disposition'] = value['disposition']
+# call_dict['answer'] = value['answerecordfiles']
+# call_dict['end'] = value['end']
+# # with open('test.csv', 'w') as f:
+# #     for key in call_dict.keys():
+# #         f.write("%s,%s\n" % (key, call_dict[key]))
+# call_history.append(call_dict)
+
+# else:
+
+
 # with open('myfile.csv','w') as f:
 #     for sublist in call_history:
 #         for item in sublist:
